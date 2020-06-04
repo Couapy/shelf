@@ -1,0 +1,8 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ book.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ book.owner.username }} - {{ book.publication_date }}</h6>
+        <p class="card-text">{{ book.description }}</p>
+        <a href="{% url 'main:book' book.slug %}" class="card-link">Lire</a>
+    </div>
+</div>

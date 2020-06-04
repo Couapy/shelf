@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Livre : {{ book.name }}{% endblock title %}
+
+{% block content %}
+    <h1 class="mb-3">{{ book.name }}</h1>
+    <h2 class="mb-3">Chapitres</h2>
+    {% if book.chapters %}
+    {% for chapter in book.chapters %}
+    <h3><a href="{% url 'main:chapter' book.slug chapter.slug %}">{{ chapter.name }}</a></h3>
+    <p>{{ chapter.description }}</p>
+    <hr>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        Ce livre est vide ...
+    </div>
+    {% endif %}
+    <h2 class="mb-3">A propos de l'auteur</h2>
+    {% include 'main/components/bookauthorcard.html' %}
+{% endblock content %}
