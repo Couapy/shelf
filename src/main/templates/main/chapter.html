@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Chapitre : {{ chapter.name }}{% endblock title %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main:shelf' book.shelf.slug %}">{{ book.shelf.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'main:book' book.slug %}">{{ book.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ chapter.name }}</li>
+        </ol>
+    </nav>
+    <h1 class="mb-3">{{ chapter.name }}</h1>
+    {{ chapter.content }}
+    {% include 'main/components/chapterpaginator.html' %}
+    <h2 class="mb-3">A propos de l'auteur</h2>
+    {% include 'main/components/chapterauthorcard.html' %}
+{% endblock content %}

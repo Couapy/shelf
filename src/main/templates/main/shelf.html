@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Étagère : {{ shelf.name }}{% endblock title %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Toutes les étagères</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ shelf.name }}</li>
+        </ol>
+    </nav>
+    <h1>{{ shelf.name }}</h1>
+    {% if shelf.books %}
+    {% include 'main/components/shelfcard.html' %}
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        Cette étagère est vide ...
+    </div>
+    {% endif %}
+{% endblock content %}

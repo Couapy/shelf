@@ -6,7 +6,8 @@
     {% if shelves %}
     <h1>Toutes les étagères</h1>
     {% for shelf in shelves %}
-    {% include 'main/components/shelfcard.html' %}
+    <h2>{{ shelf.name }}</h2>
+    {% include 'main/components/shelfcardlimited.html' %}
     {% endfor %}
     {% else %}
     <div class="alert alert-warning" role="alert">

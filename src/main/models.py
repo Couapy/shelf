@@ -19,7 +19,7 @@ class Shelf(models.Model):
 
     @property
     def books(self):
-        return Book.objects.filter(shelf=self)
+        return Book.objects.filter(shelf=self).order_by('-publication_date')
 
     def __str__(self):
         return self.name
@@ -62,7 +62,7 @@ class Book(models.Model):
 
     @property
     def chapters(self):
-        return Chapter.objects.filter(book=self)
+        return Chapter.objects.filter(book=self).order_by('-publication_date')
 
     def __str__(self):
         return self.name

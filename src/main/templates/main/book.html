@@ -3,6 +3,12 @@
 {% block title %}Livre : {{ book.name }}{% endblock title %}
 
 {% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main:shelf' book.shelf.slug %}">{{ book.shelf.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ book.name }}</li>
+        </ol>
+    </nav>
     <h1 class="mb-3">{{ book.name }}</h1>
     <h2 class="mb-3">Chapitres</h2>
     {% if book.chapters %}

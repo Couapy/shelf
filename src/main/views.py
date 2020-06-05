@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 
 from .models import Book, Chapter, Shelf
 
@@ -33,8 +34,17 @@ def chapter(request, book_slug, chapter_slug):
     """Chapter view."""
     book = Book.objects.get(slug=book_slug)
     chapter = Chapter.objects.get(slug=chapter_slug)
-    context = {
-        'book': book,
-        'chapter': chapter,
-    }
-    return render(request, 'main/chapter.html', context)
+    paginator = Paginator(book.chapters, 1)
+    index = list(paginator.object_list).index(chapter) + 1
+    page = paginator.page(index)
+
+    try:
+        previous_chapter = paginator.object_list[index-2]
+    except Exception:
+        previous_chapter = None
+    try:
+        next_chapter = paginator.object_list[index]
+    except Exception:
+        next_chapter = None
+
+    return render(request, 'main/chapter.html', locals())
